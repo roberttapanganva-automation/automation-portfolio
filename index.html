@@ -1,0 +1,2047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Robert Tapangan | Automation Specialist</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #080810;
+    --surface: #0f0f1a;
+    --surface2: #14141f;
+    --surface3: #1a1a28;
+    --border: #1e1e30;
+    --border2: #252538;
+    --accent: #ff6b35;
+    --accent-dim: rgba(255,107,53,0.12);
+    --accent2: #00d4aa;
+    --accent2-dim: rgba(0,212,170,0.12);
+    --accent3: #7c6aff;
+    --accent3-dim: rgba(124,106,255,0.12);
+    --text: #e8e8f2;
+    --muted: #606078;
+    --muted2: #888899;
+    --hot: #ff4757;
+    --warm: #ffa502;
+    --cold: #00d4aa;
+    --ai: #b06aff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  section,
+  .evidence-section,
+  .skills-outer,
+  .contact-section {
+    scroll-margin-top: 96px;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+    cursor: auto;
+  }
+
+  /* ── Noise Texture ── */
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 9990; opacity: 0.6;
+  }
+
+  /* ── Grid Background ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,107,53,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,107,53,0.025) 1px, transparent 1px);
+    background-size: 44px 44px;
+    pointer-events: none; z-index: 0;
+  }
+
+  /* ── Custom Cursor ── */
+  .cursor {
+ 
+  display: none;
+}
+  .cursor-ring {
+ 
+  display: none;
+}
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top:0; left:0; right:0;
+    z-index: 100;
+    padding: 18px 48px;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(8,8,16,0.82);
+    backdrop-filter: blur(24px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px; color: var(--accent);
+    letter-spacing: 2px; text-transform: uppercase;
+  }
+  .nav-logo span { color: var(--muted2); font-style: italic; }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a {
+    font-size: 12px; color: var(--muted);
+    text-decoration: none; letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-family: 'Space Mono', monospace;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+  .nav-cta {
+    background: var(--accent) !important;
+    color: #fff !important;
+    padding: 8px 22px; border-radius: 4px;
+    font-size: 11px !important;
+    transition: opacity 0.2s !important;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  padding: 96px 48px 56px;
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.hero-content {
+  width: 100%;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--accent2-dim);
+  border: 1px solid rgba(0,212,170,0.25);
+  color: var(--accent2);
+  padding: 7px 18px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 1.5px;
+  margin-bottom: 34px;
+}
+
+.blink {
+  width: 7px;
+  height: 7px;
+  background: var(--accent2);
+  border-radius: 50%;
+  animation: blinker 1.8s infinite;
+  flex-shrink: 0;
+}
+
+@keyframes blinker {
+  0%,100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 730px) minmax(340px, 380px);
+  justify-content: space-between;
+  gap: 56px;
+  align-items: start;
+}
+
+.hero-main {
+  min-width: 0;
+  max-width: 730px;
+  padding-right: 0;
+}
+
+.hero-side {
+  max-width: 380px;
+  justify-self: end;
+  align-self: start;
+  position: relative;
+  z-index: 2;
+  padding-top: clamp(96px, 10vw, 144px);
+}
+
+.hero h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(54px, 5.95vw, 88px);
+  font-weight: 800;
+  line-height: 0.88;
+  letter-spacing: -1.8px;
+  margin: 0;
+  max-width: 730px;
+}
+
+.hero-line {
+  display: block;
+}
+
+.hero h1 .hl {
+  color: var(--accent);
+  display: block;
+}
+
+.hero-desc {
+  font-size: 17px;
+  color: var(--muted2);
+  line-height: 1.75;
+  margin: 0 0 22px;
+  font-weight: 300;
+  max-width: 400px;
+}
+
+.hero-desc strong {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.hero-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  padding: 5px 13px;
+  border-radius: 4px;
+  border: 1px solid var(--border2);
+  color: var(--muted2);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: var(--surface);
+}
+
+.hero-tag.ai {
+  border-color: rgba(176,106,255,0.35);
+  color: var(--ai);
+  background: rgba(176,106,255,0.07);
+}
+
+.hero-tag.live {
+  border-color: rgba(0,212,170,0.35);
+  color: var(--accent2);
+  background: var(--accent2-dim);
+}
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 42px;
+  padding-top: 4px;
+}
+
+.btn-primary,
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  white-space: nowrap;
+  min-width: 220px;
+  padding: 13px 18px;
+  border-radius: 10px;
+  border: 1px solid var(--border2);
+  background: rgba(15,15,26,0.92);
+  color: var(--text);
+  text-decoration: none;
+  line-height: 1.4;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  box-shadow: 0 14px 30px rgba(0,0,0,0.22);
+  transition: transform 0.2s, border-color 0.2s, background 0.2s, color 0.2s;
+}
+
+.btn-primary {
+  border-color: rgba(176,106,255,0.34);
+  background: rgba(176,106,255,0.1);
+}
+
+.btn-secondary {
+  border-color: rgba(255,107,53,0.3);
+  background: rgba(255,107,53,0.08);
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  color: var(--text);
+  transform: translateY(-1px);
+}
+
+.btn-primary:hover {
+  border-color: rgba(176,106,255,0.55);
+  background: rgba(176,106,255,0.16);
+}
+
+.btn-secondary:hover {
+  border-color: rgba(255,107,53,0.48);
+  background: rgba(255,107,53,0.14);
+}
+
+  /* ── STATS ── */
+  .stats-strip {
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 40px 48px;
+    display: flex; justify-content: center;
+    gap: 0; position: relative; z-index: 1;
+    background: var(--surface);
+  }
+  .stat {
+    flex: 1; text-align: center;
+    padding: 0 32px;
+    border-right: 1px solid var(--border);
+    max-width: 220px;
+  }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 44px; font-weight: 800;
+    color: var(--accent); display: block; line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-label {
+    font-size: 11px; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 2px;
+    font-family: 'Space Mono', monospace;
+  }
+
+  /* ── SECTION SHELL ── */
+  section {
+    max-width: 1240px; margin: 0 auto;
+    padding: 100px 48px;
+    position: relative; z-index: 1;
+  }
+  .section-label {
+    font-family: 'Space Mono', monospace; font-size: 10px;
+    color: var(--accent); letter-spacing: 4px;
+    text-transform: uppercase; margin-bottom: 18px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .section-label::before {
+    content: ''; width: 36px; height: 1px; background: var(--accent);
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(32px, 4vw, 54px);
+    font-weight: 800; letter-spacing: -1.5px;
+    margin-bottom: 64px; line-height: 1.1;
+  }
+  .section-title span { color: var(--accent); }
+
+  /* ── WORKFLOW CARDS ── */
+  .workflow-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    margin-bottom: 28px;
+  }
+  .workflow-card:hover {
+    border-color: rgba(255,107,53,0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+  .workflow-card.ai-card:hover {
+    border-color: rgba(176,106,255,0.4);
+  }
+  .workflow-card-header {
+    padding: 36px 44px;
+    display: flex; justify-content: space-between;
+    align-items: flex-start; gap: 24px; flex-wrap: wrap;
+  }
+  .workflow-card-title-group { flex: 1; }
+  .tag-row { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+
+  .workflow-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 13px; border-radius: 100px;
+    font-size: 10px; font-family: 'Space Mono', monospace;
+    letter-spacing: 1px; white-space: nowrap;
+  }
+  .tag-live { background: rgba(0,212,170,0.12); color: var(--accent2); border: 1px solid rgba(0,212,170,0.3); }
+  .tag-ready { background: rgba(255,107,53,0.12); color: var(--accent); border: 1px solid rgba(255,107,53,0.3); }
+  .tag-cat { background: var(--surface2); color: var(--muted2); border: 1px solid var(--border2); }
+  .tag-ai { background: rgba(176,106,255,0.12); color: var(--ai); border: 1px solid rgba(176,106,255,0.3); }
+
+  .workflow-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 26px; font-weight: 700; margin-bottom: 14px;
+    line-height: 1.2;
+  }
+  .workflow-desc {
+    color: var(--muted2); font-size: 14px;
+    line-height: 1.7; max-width: 620px;
+  }
+  .workflow-badges {
+    display: flex; gap: 8px; flex-wrap: wrap; align-items: flex-start;
+  }
+  .tool-badge {
+    background: var(--surface2); border: 1px solid var(--border2);
+    padding: 7px 14px; border-radius: 6px;
+    font-size: 11px; font-family: 'Space Mono', monospace;
+    color: var(--muted2); white-space: nowrap;
+  }
+  .tool-badge.ai-badge {
+    background: rgba(176,106,255,0.08);
+    border-color: rgba(176,106,255,0.25);
+    color: var(--ai);
+  }
+
+  /* ── Flow Diagram ── */
+  .flow-diagram {
+    padding: 0 44px 36px;
+    overflow-x: auto;
+  }
+  .flow-arch-label {
+    font-size: 10px; font-family: 'Space Mono', monospace;
+    color: var(--muted); letter-spacing: 3px;
+    text-transform: uppercase; margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .flow-arch-label::after {
+    content: ''; flex: 1; height: 1px; background: var(--border);
+  }
+  .flow-track {
+    display: flex; align-items: center; gap: 0;
+    min-width: max-content; margin-bottom: 10px;
+  }
+  .flow-node {
+    display: flex; flex-direction: column;
+    align-items: center; gap: 6px; min-width: 84px;
+  }
+  .flow-icon {
+    width: 42px; height: 42px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px; border: 1px solid var(--border);
+    background: var(--surface2);
+  }
+  .fi-webhook  { background: rgba(255,107,53,0.15); border-color: rgba(255,107,53,0.35); }
+  .fi-switch   { background: rgba(124,106,255,0.15); border-color: rgba(124,106,255,0.35); }
+  .fi-sheets   { background: rgba(0,180,90,0.15); border-color: rgba(0,180,90,0.35); }
+  .fi-gmail    { background: rgba(255,60,60,0.15); border-color: rgba(255,60,60,0.35); }
+  .fi-telegram { background: rgba(0,136,212,0.15); border-color: rgba(0,136,212,0.35); }
+  .fi-calc     { background: rgba(255,165,0,0.15); border-color: rgba(255,165,0,0.35); }
+  .fi-schedule { background: rgba(0,212,170,0.15); border-color: rgba(0,212,170,0.35); }
+  .fi-notion   { background: rgba(200,200,200,0.1); border-color: rgba(200,200,200,0.25); }
+  .fi-openai   { background: rgba(176,106,255,0.15); border-color: rgba(176,106,255,0.35); }
+  .fi-wait     { background: rgba(255,165,0,0.12); border-color: rgba(255,165,0,0.3); }
+  .fi-chat     { background: rgba(0,212,170,0.15); border-color: rgba(0,212,170,0.35); }
+  .fi-postgres { background: rgba(0,136,212,0.15); border-color: rgba(0,136,212,0.35); }
+  .fi-drive    { background: rgba(66,133,244,0.15); border-color: rgba(66,133,244,0.35); }
+  .fi-merge    { background: rgba(124,106,255,0.15); border-color: rgba(124,106,255,0.35); }
+
+  .flow-node-label {
+    font-size: 8px; font-family: 'Space Mono', monospace;
+    color: var(--muted); text-align: center; letter-spacing: 0.5px;
+    max-width: 80px; line-height: 1.3;
+  }
+  .flow-arrow {
+    width: 22px; height: 1px; background: var(--border2);
+    position: relative; flex-shrink: 0;
+  }
+  .flow-arrow::after {
+    content: '▶'; position: absolute; right: -5px; top: -5px;
+    font-size: 8px; color: var(--muted);
+  }
+  .flow-branch-container {
+    display: flex; flex-direction: column; gap: 8px; padding: 6px 0;
+  }
+  .flow-branch {
+    display: flex; align-items: center; gap: 0; min-width: max-content;
+  }
+  .branch-label {
+    font-size: 9px; font-family: 'Space Mono', monospace;
+    padding: 3px 9px; border-radius: 4px; margin-right: 10px;
+    white-space: nowrap;
+  }
+  .bl-hot   { background: rgba(255,71,87,0.15); color: var(--hot); border: 1px solid rgba(255,71,87,0.3); }
+  .bl-warm  { background: rgba(255,165,2,0.15); color: var(--warm); border: 1px solid rgba(255,165,2,0.3); }
+  .bl-cold  { background: rgba(0,212,170,0.15); color: var(--cold); border: 1px solid rgba(0,212,170,0.3); }
+  .bl-inv   { background: rgba(255,71,87,0.1); color: #ff7789; border: 1px solid rgba(255,71,87,0.25); }
+  .bl-high  { background: rgba(255,71,87,0.15); color: var(--hot); border: 1px solid rgba(255,71,87,0.3); }
+  .bl-med   { background: rgba(255,165,2,0.15); color: var(--warm); border: 1px solid rgba(255,165,2,0.3); }
+  .bl-low   { background: rgba(124,106,255,0.15); color: var(--accent3); border: 1px solid rgba(124,106,255,0.3); }
+  .bl-fail  { background: rgba(255,71,87,0.1); color: #ff7789; border: 1px solid rgba(255,71,87,0.25); }
+
+  .flow-subsection {
+    margin-top: 20px; padding-top: 20px;
+    border-top: 1px dashed var(--border2);
+  }
+  .flow-subsection-label {
+    font-family: 'Space Mono', monospace; font-size: 9px;
+    color: var(--muted); letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  /* ── Metrics Row ── */
+  .workflow-metrics {
+    display: flex; gap: 0;
+    border-top: 1px solid var(--border);
+  }
+  .metric {
+    flex: 1; padding: 22px 28px;
+    border-right: 1px solid var(--border);
+    text-align: center;
+  }
+  .metric:last-child { border-right: none; }
+  .metric-value {
+    font-family: 'Syne', sans-serif; font-size: 22px;
+    font-weight: 700; color: var(--accent2); display: block; margin-bottom: 4px;
+  }
+  .metric-value.ai-val { color: var(--ai); }
+  .metric-label {
+    font-size: 10px; color: var(--muted);
+    font-family: 'Space Mono', monospace; letter-spacing: 1px;
+  }
+
+  /* ── PROOF OF WORK ── */
+  .evidence-section {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    position: relative; z-index: 1;
+    padding: 100px 0;
+  }
+  .evidence-inner { max-width: 1240px; margin: 0 auto; padding: 0 48px; }
+
+  /* Tab System */
+  .ev-tabs {
+    display: flex; gap: 0; overflow-x: auto;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 44px;
+    scrollbar-width: none;
+  }
+  .ev-tabs::-webkit-scrollbar { display: none; }
+
+  .ev-tab-input { display: none; }
+  .ev-tab-label {
+    flex-shrink: 0; padding: 14px 24px;
+    font-family: 'Space Mono', monospace; font-size: 11px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: var(--muted); cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.2s; white-space: nowrap;
+    margin-bottom: -1px;
+  }
+  .ev-tab-label:hover { color: var(--text); }
+
+  #ev-t1:checked ~ .ev-tabs .ev-label-1,
+  #ev-t2:checked ~ .ev-tabs .ev-label-2,
+  #ev-t3:checked ~ .ev-tabs .ev-label-3,
+  #ev-t4:checked ~ .ev-tabs .ev-label-4 {
+    color: var(--accent); border-bottom-color: var(--accent);
+  }
+
+  .ev-panel { display: none; }
+  #ev-t1:checked ~ .ev-panels .ev-panel-1,
+  #ev-t2:checked ~ .ev-panels .ev-panel-2,
+  #ev-t3:checked ~ .ev-panels .ev-panel-3,
+  #ev-t4:checked ~ .ev-panels .ev-panel-4 {
+    display: block;
+  }
+
+  .ev-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+  }
+  .ev-thumb {
+    position: relative; overflow: hidden; border-radius: 10px;
+    border: 1px solid var(--border2); cursor: pointer;
+    background: var(--surface2);
+    transition: border-color 0.3s, transform 0.3s;
+    aspect-ratio: 16/9;
+  }
+  .ev-thumb:hover {
+    border-color: rgba(255,107,53,0.5);
+    transform: scale(1.02);
+  }
+  .ev-thumb img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center top;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .ev-thumb:hover img { transform: scale(1.04); }
+  .ev-thumb-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(8,8,16,0.85) 0%, transparent 50%);
+    display: flex; align-items: flex-end; padding: 14px;
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .ev-thumb:hover .ev-thumb-overlay { opacity: 1; }
+  .ev-thumb-label {
+    font-family: 'Space Mono', monospace; font-size: 10px;
+    color: var(--text); letter-spacing: 1px; text-transform: uppercase;
+  }
+  .ev-thumb-zoom {
+    position: absolute; top: 12px; right: 12px;
+    width: 32px; height: 32px; background: rgba(255,107,53,0.9);
+    border-radius: 6px; display: flex; align-items: center; justify-content: center;
+    font-size: 14px; opacity: 0; transition: opacity 0.3s;
+  }
+  .ev-thumb:hover .ev-thumb-zoom { opacity: 1; }
+
+  /* Lightbox */
+  .lightbox {
+    position: fixed; inset: 0; z-index: 9000;
+    background: rgba(8,8,16,0.95);
+    display: none; align-items: center; justify-content: center;
+    padding: 40px;
+    backdrop-filter: blur(8px);
+  }
+  .lightbox.active { display: flex; }
+  .lightbox-img {
+    max-width: 90vw; max-height: 85vh;
+    object-fit: contain; border-radius: 8px;
+    border: 1px solid var(--border2);
+    box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+  }
+  .lightbox-close {
+    position: absolute; top: 24px; right: 28px;
+    width: 44px; height: 44px; background: var(--surface2);
+    border: 1px solid var(--border2); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; cursor: pointer; color: var(--text);
+    transition: all 0.2s;
+  }
+  .lightbox-close:hover { background: var(--accent); border-color: var(--accent); }
+  .lightbox-caption {
+    position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+    font-family: 'Space Mono', monospace; font-size: 11px;
+    color: var(--muted2); letter-spacing: 2px; text-transform: uppercase;
+    background: rgba(8,8,16,0.8); padding: 8px 18px; border-radius: 6px;
+    white-space: nowrap;
+  }
+
+  /* Video Placeholder */
+  .video-section {
+    margin-top: 56px; padding-top: 44px;
+    border-top: 1px dashed var(--border2);
+  }
+  .video-label {
+    font-family: 'Space Mono', monospace; font-size: 10px;
+    color: var(--accent); letter-spacing: 3px; text-transform: uppercase;
+    margin-bottom: 20px; display: flex; align-items: center; gap: 12px;
+  }
+  .video-label::after { content: ''; flex:1; height: 1px; background: var(--border); }
+  .video-container {
+    position: relative; width: 100%;
+    aspect-ratio: 16/9; border-radius: 12px;
+    overflow: hidden; background: var(--surface2);
+    border: 1px solid var(--border2);
+    max-width: 800px;
+  }
+  .video-container iframe {
+    width: 100%; height: 100%; border: none;
+  }
+  .video-placeholder {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 18px;
+    background: var(--surface2);
+  }
+  .video-play-btn {
+    width: 72px; height: 72px; border-radius: 50%;
+    background: var(--accent); display: flex;
+    align-items: center; justify-content: center;
+    font-size: 28px; padding-left: 5px;
+    box-shadow: 0 0 0 12px rgba(255,107,53,0.15);
+    transition: transform 0.2s;
+  }
+  .video-play-btn:hover { transform: scale(1.1); }
+  .video-placeholder-text {
+    font-family: 'Space Mono', monospace; font-size: 12px;
+    color: var(--muted); letter-spacing: 1px;
+    text-align: center; max-width: 320px; line-height: 1.6;
+  }
+  .video-placeholder-text strong { color: var(--muted2); }
+
+  /* ── SKILLS ── */
+  .skills-outer {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    position: relative; z-index: 1;
+    padding: 100px 48px;
+  }
+  .skills-outer-inner { max-width: 1240px; margin: 0 auto; }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
+  }
+  .skill-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px; padding: 22px;
+    transition: all 0.3s; position: relative; overflow: hidden;
+  }
+  .skill-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: var(--accent); transform: scaleX(0); transform-origin: left;
+    transition: transform 0.35s;
+  }
+  .skill-card.ai-skill::before { background: var(--ai); }
+  .skill-card:hover::before { transform: scaleX(1); }
+  .skill-card:hover { border-color: rgba(255,107,53,0.3); }
+  .skill-card.ai-skill:hover { border-color: rgba(176,106,255,0.3); }
+  .skill-icon { font-size: 26px; margin-bottom: 10px; display: block; }
+  .skill-name {
+    font-family: 'Syne', sans-serif; font-size: 15px;
+    font-weight: 700; margin-bottom: 6px;
+  }
+  .skill-desc { font-size: 12px; color: var(--muted2); line-height: 1.55; }
+  .skill-bar {
+    margin-top: 14px; height: 2px;
+    background: var(--border2); border-radius: 1px; overflow: hidden;
+  }
+  .skill-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border-radius: 1px; transform: scaleX(0); transform-origin: left;
+  }
+  .skill-card.ai-skill .skill-bar-fill {
+    background: linear-gradient(90deg, var(--ai), var(--accent2));
+  }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 64px; align-items: start;
+  }
+  .about-text p {
+    color: var(--muted2); font-size: 15px;
+    line-height: 1.8; margin-bottom: 18px;
+  }
+  .about-text p strong { color: var(--text); font-weight: 500; }
+  .about-terminal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px; overflow: hidden;
+  }
+  .terminal-topbar {
+    padding: 12px 18px; background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-r { background: #ff5f57; } .dot-y { background: #febc2e; } .dot-g { background: #28c840; }
+  .terminal-title {
+    margin-left: 8px; font-family: 'Space Mono', monospace;
+    font-size: 11px; color: var(--muted); letter-spacing: 1px;
+  }
+  .terminal-body { padding: 24px; }
+  .t-line {
+    font-family: 'Space Mono', monospace; font-size: 12px;
+    margin-bottom: 10px; line-height: 1.6;
+  }
+  .t-prompt { color: var(--accent2); }
+  .t-cmd { color: var(--text); }
+  .t-out { color: var(--muted2); padding-left: 16px; margin-top: 2px; }
+  .t-out .t-key { color: var(--accent); }
+  .t-out .t-val { color: var(--accent2); }
+  .t-separator { border: none; border-top: 1px solid var(--border); margin: 14px 0; }
+
+  /* ── CONTACT ── */
+  .contact-section {
+    background: var(--surface); position: relative; z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 100px 48px;
+    text-align: center; overflow: hidden;
+  }
+  .contact-section::before {
+    content: '';
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(255,107,53,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .contact-section .section-label { justify-content: center; }
+  .contact-section .section-label::before { display: none; }
+  .contact-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(40px, 5.5vw, 68px);
+    font-weight: 800; letter-spacing: -2px; margin-bottom: 20px;
+    position: relative; z-index: 1;
+  }
+  .contact-subtitle {
+    color: var(--muted2); font-size: 17px;
+    margin-bottom: 44px; max-width: 480px;
+    margin-left: auto; margin-right: auto; line-height: 1.65;
+    position: relative; z-index: 1;
+  }
+  .contact-links {
+    display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+    position: relative; z-index: 1;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .contact-link {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--surface2); border: 1px solid var(--border2);
+    padding: 13px 26px; border-radius: 8px; text-decoration: none;
+    color: var(--text); font-family: 'Space Mono', monospace;
+    font-size: 12px; transition: all 0.25s; letter-spacing: 0.5px;
+    min-width: 220px;
+    justify-content: center;
+  }
+  .contact-link:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 30px 48px; text-align: center;
+    position: relative; z-index: 1;
+    border-top: 1px solid var(--border);
+  }
+  footer p {
+    font-family: 'Space Mono', monospace; font-size: 11px;
+    color: var(--muted); letter-spacing: 1.5px;
+  }
+  footer span { color: var(--accent); }
+
+  /* ── ANIMATIONS ── */
+  .fade-in {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+  /* ── MOBILE ── */
+ @media (max-width: 1180px) {
+  .hero {
+    max-width: 1240px;
+  }
+
+  .hero-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 348px);
+    gap: 40px;
+  }
+
+  .hero-main {
+    max-width: 100%;
+  }
+
+  .hero-side {
+    max-width: 348px;
+    padding-top: clamp(72px, 9vw, 118px);
+  }
+}
+
+ @media (max-width: 980px) {
+  nav {
+    padding: 16px 20px;
+    align-items: flex-start;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 16px 18px;
+  }
+
+  .hero,
+  section,
+  .skills-outer,
+  .contact-section,
+  footer {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .evidence-inner {
+    padding: 0 20px;
+  }
+
+  .hero {
+    min-height: auto;
+    padding-top: 140px;
+    padding-bottom: 64px;
+  }
+
+  .hero-badge {
+    max-width: 100%;
+    flex-wrap: wrap;
+    line-height: 1.5;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .hero-main {
+    max-width: 100%;
+    padding-right: 0;
+  }
+
+  .hero-side {
+    max-width: 100%;
+    width: 100%;
+    justify-self: start;
+    padding-top: 0;
+  }
+
+  .hero h1 {
+    font-size: clamp(44px, 12vw, 72px);
+    line-height: 0.9;
+    max-width: 100%;
+  }
+
+  .hero-desc {
+    max-width: 100%;
+    font-size: 16px;
+  }
+
+  .hero-actions {
+    gap: 16px;
+    margin-top: 28px;
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    min-width: 0;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .stats-strip {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 0 20px;
+  }
+
+  .stat {
+    flex: none;
+    max-width: none;
+    padding: 28px 18px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .stat:nth-child(2n) {
+    border-right: none;
+  }
+
+  .stat:nth-last-child(-n+2) {
+    border-bottom: none;
+  }
+
+  section {
+    padding-top: 84px;
+    padding-bottom: 84px;
+  }
+
+  .workflow-card-header {
+    padding: 30px 24px;
+    gap: 20px;
+  }
+
+  .workflow-badges {
+    width: 100%;
+  }
+
+  .flow-diagram {
+    padding: 0 24px 30px;
+  }
+
+  .workflow-metrics {
+    flex-wrap: wrap;
+  }
+
+  .metric {
+    flex: 1 1 50%;
+    min-width: 50%;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .metric:nth-child(2n) {
+    border-right: none;
+  }
+
+  .metric:nth-last-child(-n+2) {
+    border-bottom: none;
+  }
+
+  .evidence-section {
+    padding: 84px 0;
+  }
+
+  .ev-tabs {
+    margin-bottom: 32px;
+  }
+
+  .ev-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .skills-outer {
+    padding-top: 84px;
+    padding-bottom: 84px;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .contact-section {
+    padding-top: 84px;
+    padding-bottom: 84px;
+  }
+
+  .contact-links {
+    flex-direction: column;
+    align-items: stretch;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .contact-link {
+    justify-content: center;
+  }
+}
+
+ @media (max-width: 640px) {
+  nav {
+    padding: 14px 16px;
+  }
+
+  .nav-logo {
+    font-size: 12px;
+  }
+
+  .nav-links {
+    gap: 10px 12px;
+  }
+
+  .nav-links a {
+    font-size: 10px;
+  }
+
+  .hero {
+    padding-top: 138px;
+  }
+
+  .hero h1 {
+    font-size: clamp(24px, 8vw, 36px);
+    letter-spacing: -0.45px;
+    line-height: 0.95;
+  }
+
+  .hero-badge {
+    padding: 7px 14px;
+    font-size: 10px;
+    margin-bottom: 24px;
+  }
+
+  .hero-desc {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .hero-tags {
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .hero-tag {
+    font-size: 9px;
+    padding: 5px 10px;
+  }
+
+  .section-title {
+    margin-bottom: 44px;
+  }
+
+  .workflow-card-header {
+    padding: 24px 18px 20px;
+  }
+
+  .flow-diagram {
+    padding: 0 18px 24px;
+  }
+
+  .metric {
+    padding: 18px 14px;
+    flex: 1 1 100%;
+    min-width: 100%;
+    border-right: none;
+  }
+
+  .stats-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .stat {
+    border-right: none;
+    padding: 24px 14px;
+  }
+
+  .stat:nth-last-child(-n+2) {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .stat:last-child {
+    border-bottom: none;
+  }
+
+  .ev-tab-label {
+    padding: 12px 16px;
+  }
+
+  .ev-grid,
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lightbox {
+    padding: 20px;
+  }
+
+  .lightbox-caption {
+    bottom: 18px;
+    max-width: calc(100vw - 40px);
+    white-space: normal;
+    text-align: center;
+  }
+
+  .contact-title {
+    font-size: clamp(36px, 14vw, 52px);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding-top: 132px;
+  }
+
+  .hero h1 {
+    font-size: clamp(22px, 7.6vw, 30px);
+    letter-spacing: -0.2px;
+    line-height: 0.96;
+  }
+
+  .hero-desc {
+    font-size: 14px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    padding: 12px 13px;
+    font-size: 9px;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <div class="lightbox-close" onclick="closeLightbox()">✕</div>
+  <img class="lightbox-img" id="lightbox-img" src="" alt=""/>
+  <div class="lightbox-caption" id="lightbox-caption"></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">[ <span>rt.</span>automate ]</div>
+  <ul class="nav-links">
+    <li><a href="#workflows">Workflows</a></li>
+    <li><a href="#evidence">Evidence</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div style="position:relative;z-index:1;">
+  <div class="hero">
+    <div class="hero-content fade-in visible" style="opacity:1;transform:none;">
+      
+      <div class="hero-badge">
+        <span class="blink"></span>Available for Work — Remote / Freelance
+      </div>
+
+      <div class="hero-grid">
+        <div class="hero-main">
+          <h1>
+            <span class="hero-line">I Build</span>
+            <span class="hero-line hl">Automation</span>
+            <span class="hero-line hl">Systems</span>
+            <span class="hero-line">for</span>
+            <span class="hero-line">Smarter</span>
+            <span class="hero-line">Business</span>
+            <span class="hero-line">Operations.</span>
+          </h1>
+        </div>
+
+        <div class="hero-side">
+          <p class="hero-desc">
+            Former <strong>operations support professional</strong> turned <strong>Automation Specialist</strong>.
+            I build custom workflows, AI-powered systems, and AI agents that help businesses reduce manual work,
+            improve follow-up, and run operations more efficiently. I primarily work with <strong>n8n</strong>,
+            while also adapting to other automation tools based on the business needs, workflow, and existing tech stack.
+          </p>
+
+          <div class="hero-tags">
+            <span class="hero-tag live">5 Portfolio Workflows Tested</span>
+            <span class="hero-tag ai">3 AI-Powered</span>
+            <span class="hero-tag">Preferred: n8n</span>
+            <span class="hero-tag">AI Agents</span>
+            <span class="hero-tag">RAG Systems</span>
+            <span class="hero-tag">10+ Integrations</span>
+          </div>
+
+          <div class="hero-actions">
+            <a href="#workflows" class="btn-primary">View My Workflows →</a>
+            <a href="#evidence" class="btn-secondary">See Proof of Work</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stat">
+    <span class="stat-num" data-target="5" data-suffix="">0</span>
+    <span class="stat-label">Workflows Built</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num" data-target="3" data-suffix="">0</span>
+    <span class="stat-label">AI-Powered Systems</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num" data-target="5" data-suffix="">0</span>
+    <span class="stat-label">Portfolio Workflows Tested</span>
+  </div>
+  <div class="stat">
+    <span class="stat-num" data-target="10" data-suffix="+">0</span>
+    <span class="stat-label">Tools Connected</span>
+  </div>
+</div>
+
+<!-- WORKFLOWS -->
+<section id="workflows">
+  <div class="section-label">Selected Projects</div>
+  <div class="section-title">Practical Systems Built For<br/><span>Business Operations</span></div>
+
+  <!-- ── WORKFLOW 1: Lead Capture ── -->
+  <div class="workflow-card fade-in">
+    <div class="workflow-card-header">
+      <div class="workflow-card-title-group">
+        <div class="tag-row">
+          <span class="workflow-tag tag-live">● PUBLISHED &amp; LIVE</span>
+          <span class="workflow-tag tag-cat">LEAD MANAGEMENT</span>
+        </div>
+        <div class="workflow-title">Lead Capture, Qualification &amp; Follow-Up System</div>
+        <div class="workflow-desc">
+          A lead handling workflow built to reduce manual follow-up and keep inquiries organized from the moment they arrive.
+          Incoming leads are captured, validated, categorized by priority, and routed into the right actions automatically.
+          The system logs lead data, sends alerts, creates internal tasks, triggers email responses, and schedules follow-ups
+          so the process stays consistent without manual tracking.
+        </div>
+      </div>
+      <div class="workflow-badges">
+        <span class="tool-badge">⚡ n8n</span>
+        <span class="tool-badge">🔗 Webhook</span>
+        <span class="tool-badge">📊 Google Sheets</span>
+        <span class="tool-badge">📧 Gmail ×4</span>
+        <span class="tool-badge">✈️ Telegram</span>
+        <span class="tool-badge">📝 Notion</span>
+      </div>
+    </div>
+
+    <div class="flow-diagram">
+      <div class="flow-arch-label">Workflow Architecture</div>
+
+      <!-- Intake chain -->
+      <div class="flow-track" style="margin-bottom:18px;">
+        <div class="flow-node">
+          <div class="flow-icon fi-webhook">🔗</div>
+          <div class="flow-node-label">RECEIVE WEBHOOK</div>
+        </div>
+        <div class="flow-arrow"></div>
+        <div class="flow-node">
+          <div class="flow-icon fi-calc">{ }</div>
+          <div class="flow-node-label">NORMALIZE DATA</div>
+        </div>
+        <div class="flow-arrow"></div>
+        <div class="flow-node">
+          <div class="flow-icon fi-switch">✓</div>
+          <div class="flow-node-label">VALIDATE LEAD</div>
+        </div>
+        <div class="flow-arrow"></div>
+        <div class="flow-node">
+          <div class="flow-icon fi-switch">🔀</div>
+          <div class="flow-node-label">ROUTE VALID</div>
+        </div>
+        <div class="flow-arrow"></div>
+        <div class="flow-node">
+          <div class="flow-icon fi-switch">🔀</div>
+          <div class="flow-node-label">ROUTE TYPE</div>
+        </div>
+        <div class="flow-arrow"></div>
+        <!-- Branches -->
+        <div class="flow-branch-container">
+          <div class="flow-branch">
+            <span class="branch-label bl-inv">⚠️ INVALID</span>
+            <div class="flow-node"><div class="flow-icon fi-gmail">📧</div><div class="flow-node-label">ALERT OWNER</div></div>
+          </div>
+          <div class="flow-branch">
+            <span class="branch-label bl-hot">🔴 HOT</span>
+            <div class="flow-node"><div class="flow-icon fi-sheets">📊</div><div class="flow-node-label">SAVE SHEET</div></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node"><div class="flow-icon fi-sheets">📊</div><div class="flow-node-label">UPDATE DASH</div></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node"><div class="flow-icon fi-gmail">📧</div><div class="flow-node-label">NOTIFY OWNER</div></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node"><div class="flow-icon fi-telegram">✈️</div><div class="flow-node-label">TELEGRAM</div></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node"><div class="flow-icon fi-gmail">📧</div><div class="flow-node-label">AUTO REPLY</div></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node"><div class="flow-icon fi-notion">📝</div><div class="flow-node-label">NOTION TASK</div></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node"><div class="flow-icon fi-wait">⏳</div><div class="flow-node-label">WAIT 24H</div></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node"><div class="flow-icon fi-gmail">📧</div><div class="flow-node-label">FOLLOW-UP</div></div>
+          </div>
+          <div class="flow-branch">
+            <span class="branch-label bl-warm">🟡 WARM</span>
+            <div class="flow-node"><div class="flow-icon fi-sheets">📊</div><div class="flow-node-label">SAVE SHEET</div></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node"><div class="flow-icon fi-sheets">📊</div><div class="flow-node-label">UPDATE DASH</div></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node"><div class="flow-icon fi-gmail">📧</div><div class="flow-node-label">NOTIFY OWNER</div></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node"><div class="flow-icon fi-telegram">✈️</div><div class="flow-node-label">TELEGRAM</div></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node"><div class="flow-icon fi-gmail">📧</div><div class="flow-node-label">AUTO REPLY</div></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node"><div class="flow-icon fi-notion">📝</div><div class="flow-node-label">NOTION TASK</div></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node"><div class="flow-icon fi-wait">⏳</div><div class="flow-node-label">WAIT 24H</div></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node"><div class="flow-icon fi-gmail">📧</div><div class="flow-node-label">FOLLOW-UP</div></div>
+          </div>
+          <div class="flow-branch">
+            <span class="branch-label bl-cold">🔵 COLD</span>
+            <div class="flow-node"><div class="flow-icon fi-sheets">📊</div><div class="flow-node-label">SAVE SHEET</div></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node"><div class="flow-icon fi-sheets">📊</div><div class="flow-node-label">UPDATE DASH</div></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node"><div class="flow-icon fi-gmail">📧</div><div class="flow-node-label">NOTIFY OWNER</div></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node"><div class="flow-icon fi-telegram">✈️</div><div class="flow-node-label">TELEGRAM</div></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node"><div class="flow-icon fi-gmail">📧</div><div class="flow-node-label">AUTO REPLY</div></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node"><div class="flow-icon fi-notion">📝</div><div class="flow-node-label">NOTION TASK</div></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node"><div class="flow-icon fi-wait">⏳</div><div class="flow-node-label">WAIT 24H</div></div>
+            <div class="flow-arrow"></div>
+            <div class="flow-node"><div class="flow-icon fi-gmail">📧</div><div class="flow-node-label">FOLLOW-UP</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="workflow-metrics">
+      <div class="metric"><span class="metric-value">3</span><span class="metric-label">Lead Tiers</span></div>
+      <div class="metric"><span class="metric-value">24hr</span><span class="metric-label">Auto Follow-Up</span></div>
+      <div class="metric"><span class="metric-value">6</span><span class="metric-label">Integrations</span></div>
+      <div class="metric"><span class="metric-value">✅ Live</span><span class="metric-label">Status</span></div>
+    </div>
+  </div>
+
+  <!-- ── WORKFLOW 2: Daily Summary ── -->
+  <div class="workflow-card fade-in">
+    <div class="workflow-card-header">
+      <div class="workflow-card-title-group">
+        <div class="tag-row">
+          <span class="workflow-tag tag-live">● PUBLISHED &amp; LIVE</span>
+          <span class="workflow-tag tag-cat">SCHEDULED REPORTING</span>
+        </div>
+        <div class="workflow-title">Automated Daily Lead Summary Reporting</div>
+        <div class="workflow-desc">
+          A scheduled reporting workflow that automatically compiles lead data into a clean daily summary for stakeholders.
+          Instead of checking multiple sheets manually, the system pulls the latest numbers, formats the report,
+          and sends a ready-to-read update on schedule. This helps keep teams informed while removing repetitive reporting work.
+        </div>
+      </div>
+      <div class="workflow-badges">
+        <span class="tool-badge">⚡ n8n</span>
+        <span class="tool-badge">⏰ Schedule Trigger</span>
+        <span class="tool-badge">📊 Google Sheets</span>
+        <span class="tool-badge">📧 Gmail</span>
+      </div>
+    </div>
+
+    <div class="flow-diagram">
+      <div class="flow-arch-label">Workflow Architecture</div>
+      <div class="flow-track">
+        <div class="flow-node"><div class="flow-icon fi-schedule">⏰</div><div class="flow-node-label">SCHEDULE TRIGGER</div></div>
+        <div class="flow-arrow"></div>
+        <div class="flow-node"><div class="flow-icon fi-sheets" style="border-color:rgba(255,71,87,0.4);">📊</div><div class="flow-node-label">READ HOT</div></div>
+        <div class="flow-arrow"></div>
+        <div class="flow-node"><div class="flow-icon fi-sheets" style="border-color:rgba(255,165,2,0.4);">📊</div><div class="flow-node-label">READ WARM</div></div>
+        <div class="flow-arrow"></div>
+        <div class="flow-node"><div class="flow-icon fi-sheets" style="border-color:rgba(0,212,170,0.4);">📊</div><div class="flow-node-label">READ COLD</div></div>
+        <div class="flow-arrow"></div>
+        <div class="flow-node"><div class="flow-icon fi-sheets">📊</div><div class="flow-node-label">READ TOTAL</div></div>
+        <div class="flow-arrow"></div>
+        <div class="flow-node"><div class="flow-icon fi-calc">{ }</div><div class="flow-node-label">BUILD REPORT</div></div>
+        <div class="flow-arrow"></div>
+        <div class="flow-node"><div class="flow-icon fi-gmail">📧</div><div class="flow-node-label">SEND EMAIL</div></div>
+      </div>
+    </div>
+
+    <div class="workflow-metrics">
+      <div class="metric"><span class="metric-value">Daily</span><span class="metric-label">Auto Schedule</span></div>
+      <div class="metric"><span class="metric-value">5.9s</span><span class="metric-label">Avg Exec Time</span></div>
+      <div class="metric"><span class="metric-value">~1hr</span><span class="metric-label">Saved / Day</span></div>
+      <div class="metric"><span class="metric-value">✅ Live</span><span class="metric-label">Status</span></div>
+    </div>
+  </div>
+
+  <!-- ── WORKFLOW 3: AI Email Triage ── -->
+  <div class="workflow-card ai-card fade-in">
+    <div class="workflow-card-header">
+      <div class="workflow-card-title-group">
+        <div class="tag-row">
+          <span class="workflow-tag tag-ready">⚡ BUILT &amp; READY</span>
+          <span class="workflow-tag tag-ai">🤖 AI-POWERED</span>
+          <span class="workflow-tag tag-cat">EMAIL AUTOMATION</span>
+        </div>
+        <div class="workflow-title">AI Email Triage &amp; Response Drafting Agent</div>
+        <div class="workflow-desc">
+          An AI-assisted email workflow designed to help reduce inbox overload and speed up response handling.
+          Incoming emails are analyzed, categorized by priority, logged for tracking, and routed into the next action.
+          For higher-priority messages, the system can support task creation and draft response preparation,
+          helping teams focus faster on the emails that matter most.
+        </div>
+      </div>
+      <div class="workflow-badges">
+        <span class="tool-badge ai-badge">🤖 OpenAI GPT-4</span>
+        <span class="tool-badge">📧 Gmail</span>
+        <span class="tool-badge">📊 Google Sheets</span>
+        <span class="tool-badge">📝 Notion</span>
+        <span class="tool-badge">✈️ Telegram</span>
+      </div>
+    </div>
+
+    <div class="flow-diagram">
+      <div class="flow-arch-label">Workflow Architecture</div>
+      <!-- Main chain -->
+      <div class="flow-track" style="margin-bottom:14px;">
+        <div class="flow-node"><div class="flow-icon fi-gmail">📧</div><div class="flow-node-label">GMAIL TRIGGER</div></div>
+        <div class="flow-arrow"></div>
+        <div class="flow-node"><div class="flow-icon fi-gmail">📧</div><div class="flow-node-label">GET FULL MSG</div></div>
+        <div class="flow-arrow"></div>
+        <div class="flow-node"><div class="flow-icon fi-calc">{ }</div><div class="flow-node-label">NORMALIZE EMAIL</div></div>
+        <div class="flow-arrow"></div>
+        <div class="flow-node"><div class="flow-icon fi-calc">⚙️</div><div class="flow-node-label">ADD SETTINGS</div></div>
+        <div class="flow-arrow"></div>
+        <div class="flow-node"><div class="flow-icon fi-openai">🤖</div><div class="flow-node-label">OPENAI CLASSIFY</div></div>
+        <div class="flow-arrow"></div>
+        <div class="flow-node"><div class="flow-icon fi-calc">{ }</div><div class="flow-node-label">NORMALIZE RESULT</div></div>
+        <div class="flow-arrow"></div>
+        <div class="flow-node"><div class="flow-icon fi-sheets">📊</div><div class="flow-node-label">LOG TO SHEETS</div></div>
+        <div class="flow-arrow"></div>
+        <div class="flow-node"><div class="flow-icon fi-switch">🔀</div><div class="flow-node-label">ROUTE OUTCOME</div></div>
+      </div>
+      <!-- Priority branches -->
+      <div class="flow-branch-container" style="padding-left:8px;">
+        <div class="flow-branch">
+          <span class="branch-label bl-fail">⚠️ AI FAILURE</span>
+          <div class="flow-node"><div class="flow-icon fi-telegram">✈️</div><div class="flow-node-label">TELEGRAM ALERT</div></div>
+          <div class="flow-arrow"></div>
+          <div class="flow-node"><div class="flow-icon fi-notion">📝</div><div class="flow-node-label">NOTION TASK</div></div>
+        </div>
+        <div class="flow-branch">
+          <span class="branch-label bl-high">🔴 HIGH</span>
+          <div class="flow-node"><div class="flow-icon fi-telegram">✈️</div><div class="flow-node-label">TELEGRAM ALERT</div></div>
+          <div class="flow-arrow"></div>
+          <div class="flow-node"><div class="flow-icon fi-notion">📝</div><div class="flow-node-label">NOTION TASK</div></div>
+          <div class="flow-arrow"></div>
+          <div class="flow-node"><div class="flow-icon fi-gmail">📧</div><div class="flow-node-label">DRAFT REPLY</div></div>
+          <div class="flow-arrow"></div>
+          <div class="flow-node"><div class="flow-icon fi-switch">⚙️</div><div class="flow-node-label">MARK READ?</div></div>
+          <div class="flow-arrow"></div>
+          <div class="flow-node"><div class="flow-icon fi-gmail">📧</div><div class="flow-node-label">MARK READ</div></div>
+        </div>
+        <div class="flow-branch">
+          <span class="branch-label bl-med">🟡 MEDIUM</span>
+          <div class="flow-node"><div class="flow-icon fi-notion">📝</div><div class="flow-node-label">NOTION TASK</div></div>
+          <div class="flow-arrow"></div>
+          <div class="flow-node"><div class="flow-icon fi-gmail">📧</div><div class="flow-node-label">DRAFT REPLY</div></div>
+          <div class="flow-arrow"></div>
+          <div class="flow-node"><div class="flow-icon fi-switch">⚙️</div><div class="flow-node-label">MARK READ?</div></div>
+          <div class="flow-arrow"></div>
+          <div class="flow-node"><div class="flow-icon fi-gmail">📧</div><div class="flow-node-label">MARK READ</div></div>
+        </div>
+        <div class="flow-branch">
+          <span class="branch-label bl-low">🔵 LOW / SPAM</span>
+          <div class="flow-node"><div class="flow-icon fi-switch">⚙️</div><div class="flow-node-label">MARK READ?</div></div>
+          <div class="flow-arrow"></div>
+          <div class="flow-node"><div class="flow-icon fi-gmail">📧</div><div class="flow-node-label">MARK READ</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="workflow-metrics">
+      <div class="metric"><span class="metric-value ai-val">4</span><span class="metric-label">Priority Tiers</span></div>
+      <div class="metric"><span class="metric-value ai-val">GPT-4</span><span class="metric-label">AI Classifier</span></div>
+      <div class="metric"><span class="metric-value ai-val">Auto-Draft</span><span class="metric-label">Gmail Replies</span></div>
+      <div class="metric"><span class="metric-value">⚡ Ready</span><span class="metric-label">Status</span></div>
+    </div>
+  </div>
+
+  <!-- ── WORKFLOW 4+5: Knowledge Base System ── -->
+  <div class="workflow-card ai-card fade-in">
+    <div class="workflow-card-header">
+      <div class="workflow-card-title-group">
+        <div class="tag-row">
+          <span class="workflow-tag tag-ready">⚡ BUILT &amp; READY</span>
+          <span class="workflow-tag tag-ai">🤖 AI-POWERED</span>
+          <span class="workflow-tag tag-cat">RAG CHATBOT SYSTEM</span>
+        </div>
+        <div class="workflow-title">Employee Handbook Knowledge Base &amp; AI FAQ Assistant</div>
+        <div class="workflow-desc">
+          A knowledge-based AI assistant built to help users find answers from internal documents more quickly and consistently.
+          The system processes source files into a searchable knowledge base, then uses retrieval-based prompting
+          to return grounded answers to employee questions. This is useful for handbook access, internal FAQs,
+          and business information that teams need without searching through documents manually.
+        </div>
+      </div>
+      <div class="workflow-badges">
+        <span class="tool-badge ai-badge">🤖 OpenAI GPT-4</span>
+        <span class="tool-badge ai-badge">🔍 PGVector</span>
+        <span class="tool-badge">🐘 Postgres</span>
+        <span class="tool-badge">📁 Google Drive</span>
+        <span class="tool-badge">💬 n8n Chat</span>
+      </div>
+    </div>
+
+    <div class="flow-diagram">
+      <div class="flow-arch-label">Document Ingestion Pipeline</div>
+      <div class="flow-track" style="margin-bottom:6px;">
+        <div class="flow-node"><div class="flow-icon fi-calc">🖱️</div><div class="flow-node-label">MANUAL TRIGGER</div></div>
+        <div class="flow-arrow"></div>
+        <div class="flow-node"><div class="flow-icon fi-drive">📁</div><div class="flow-node-label">FIND IN DRIVE</div></div>
+        <div class="flow-arrow"></div>
+        <div class="flow-node"><div class="flow-icon fi-drive">⬇️</div><div class="flow-node-label">DOWNLOAD FILE</div></div>
+        <div class="flow-arrow"></div>
+        <div class="flow-node"><div class="flow-icon fi-calc">📄</div><div class="flow-node-label">EXTRACT TEXT</div></div>
+        <div class="flow-arrow"></div>
+        <div class="flow-node"><div class="flow-icon fi-calc">{ }</div><div class="flow-node-label">NORMALIZE META</div></div>
+        <div class="flow-arrow"></div>
+        <div class="flow-node"><div class="flow-icon fi-postgres">🐘</div><div class="flow-node-label">UPSERT DOC</div></div>
+        <div class="flow-arrow"></div>
+        <div class="flow-node"><div class="flow-icon fi-calc">✂️</div><div class="flow-node-label">CHUNK TEXT</div></div>
+        <div class="flow-arrow"></div>
+        <div class="flow-node"><div class="flow-icon fi-openai">🤖</div><div class="flow-node-label">EMBED OPENAI</div></div>
+        <div class="flow-arrow"></div>
+        <div class="flow-node"><div class="flow-icon fi-postgres">🐘</div><div class="flow-node-label">STORE VECTORS</div></div>
+        <div class="flow-arrow"></div>
+        <div class="flow-node"><div class="flow-icon fi-postgres">📊</div><div class="flow-node-label">LOG RESULT</div></div>
+      </div>
+
+      <div class="flow-subsection">
+        <div class="flow-subsection-label">// FAQ Chatbot Pipeline</div>
+        <div class="flow-track">
+          <div class="flow-node"><div class="flow-icon fi-chat">💬</div><div class="flow-node-label">CHAT TRIGGER</div></div>
+          <div class="flow-arrow"></div>
+          <div class="flow-node"><div class="flow-icon fi-calc">{ }</div><div class="flow-node-label">NORMALIZE QUESTION</div></div>
+          <div class="flow-arrow"></div>
+          <div class="flow-node"><div class="flow-icon fi-postgres">🐘</div><div class="flow-node-label">LOOKUP METADATA</div></div>
+          <div class="flow-arrow"></div>
+          <div class="flow-node"><div class="flow-icon fi-calc">📝</div><div class="flow-node-label">BUILD PROMPT</div></div>
+          <div class="flow-arrow"></div>
+          <div class="flow-node"><div class="flow-icon fi-openai">🤖</div><div class="flow-node-label">AI AGENT + PGVECTOR</div></div>
+          <div class="flow-arrow"></div>
+          <div class="flow-node"><div class="flow-icon fi-postgres">📊</div><div class="flow-node-label">LOG QUERY</div></div>
+          <div class="flow-arrow"></div>
+          <div class="flow-node"><div class="flow-icon fi-chat">💬</div><div class="flow-node-label">SEND RESPONSE</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="workflow-metrics">
+      <div class="metric"><span class="metric-value ai-val">RAG</span><span class="metric-label">Architecture</span></div>
+      <div class="metric"><span class="metric-value ai-val">PGVector</span><span class="metric-label">Semantic Search</span></div>
+      <div class="metric"><span class="metric-value ai-val">2</span><span class="metric-label">Linked Workflows</span></div>
+      <div class="metric"><span class="metric-value">⚡ Ready</span><span class="metric-label">Status</span></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- PROOF OF WORK / EVIDENCE -->
+<div class="evidence-section" id="evidence">
+  <div class="evidence-inner">
+    <div class="section-label" style="margin-bottom:18px;">Execution Proof</div>
+    <div class="section-title" style="margin-bottom:0;">The Evidence<br/><span style="color:var(--muted2);font-size:0.55em;font-weight:400;letter-spacing:0;font-family:'DM Sans',sans-serif;">Every screenshot is from a real execution — not a demo.</span></div>
+    <p style="color:var(--muted2);font-size:14px;font-family:'Space Mono',monospace;margin:20px 0 40px;letter-spacing:1px;">// Click any screenshot to enlarge</p>
+
+    <!-- TAB SYSTEM (CSS-only) -->
+    <input type="radio" name="ev" id="ev-t1" class="ev-tab-input" checked/>
+    <input type="radio" name="ev" id="ev-t2" class="ev-tab-input"/>
+    <input type="radio" name="ev" id="ev-t3" class="ev-tab-input"/>
+    <input type="radio" name="ev" id="ev-t4" class="ev-tab-input"/>
+
+    <div class="ev-tabs">
+      <label for="ev-t1" class="ev-tab-label ev-label-1">Lead Capture System</label>
+      <label for="ev-t2" class="ev-tab-label ev-label-2">Daily Summary Report</label>
+      <label for="ev-t3" class="ev-tab-label ev-label-3">AI Email Triage</label>
+      <label for="ev-t4" class="ev-tab-label ev-label-4">Knowledge Base Chatbot</label>
+    </div>
+
+    <div class="ev-panels">
+
+      <!-- Panel 1: Lead Capture -->
+      <div class="ev-panel ev-panel-1">
+        <div class="ev-grid">
+          <div class="ev-thumb" onclick="openLightbox('assets/screenshots/lead-capture/lead-capture-workflow-structure.png','Lead Capture — Full Workflow Structure')">
+            <img src="assets/screenshots/lead-capture/lead-capture-workflow-structure.png" alt="Lead Capture Workflow"/>
+            <div class="ev-thumb-overlay"><span class="ev-thumb-label">Full Workflow Structure</span></div>
+            <div class="ev-thumb-zoom">⤢</div>
+          </div>
+          <div class="ev-thumb" onclick="openLightbox('assets/screenshots/lead-capture/lead-capture-workflow-structure-warm-success.png','Warm Lead — Successful Execution')">
+            <img src="assets/screenshots/lead-capture/lead-capture-workflow-structure-warm-success.png" alt="Warm Lead Execution"/>
+            <div class="ev-thumb-overlay"><span class="ev-thumb-label">Warm Lead — Successful Execution</span></div>
+            <div class="ev-thumb-zoom">⤢</div>
+          </div>
+          <div class="ev-thumb" onclick="openLightbox('assets/screenshots/lead-capture/lead-capture-workflow-structure-cold-success.png','Cold Lead — Successful Execution')">
+            <img src="assets/screenshots/lead-capture/lead-capture-workflow-structure-cold-success.png" alt="Cold Lead Execution"/>
+            <div class="ev-thumb-overlay"><span class="ev-thumb-label">Cold Lead — Successful Execution</span></div>
+            <div class="ev-thumb-zoom">⤢</div>
+          </div>
+          <div class="ev-thumb" onclick="openLightbox('assets/screenshots/lead-capture/auto-capture-lead-dashboard.png','Google Sheets Lead Stats Dashboard')">
+            <img src="assets/screenshots/lead-capture/auto-capture-lead-dashboard.png" alt="Lead Dashboard"/>
+            <div class="ev-thumb-overlay"><span class="ev-thumb-label">Live Lead Stats Dashboard</span></div>
+            <div class="ev-thumb-zoom">⤢</div>
+          </div>
+          <div class="ev-thumb" onclick="openLightbox('assets/screenshots/lead-capture/auto-capture-lead-warm.png','Warm Lead Capture in Google Sheets')">
+            <img src="assets/screenshots/lead-capture/auto-capture-lead-warm.png" alt="Warm Lead Capture"/>
+            <div class="ev-thumb-overlay"><span class="ev-thumb-label">Warm Lead Logged in Sheets</span></div>
+            <div class="ev-thumb-zoom">⤢</div>
+          </div>
+          <div class="ev-thumb" onclick="openLightbox('assets/screenshots/lead-capture/notion-auto-task-capture.png','Notion — Auto-Created Lead Tasks')">
+            <img src="assets/screenshots/lead-capture/notion-auto-task-capture.png" alt="Notion Tasks"/>
+            <div class="ev-thumb-overlay"><span class="ev-thumb-label">Notion — Auto-Generated Tasks</span></div>
+            <div class="ev-thumb-zoom">⤢</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 2: Daily Summary -->
+      <div class="ev-panel ev-panel-2">
+        <div class="ev-grid">
+          <div class="ev-thumb" onclick="openLightbox('assets/screenshots/lead-capture/daily-auto-summary-report-workflow-structure.png','Daily Summary — Workflow Structure')">
+            <img src="assets/screenshots/lead-capture/daily-auto-summary-report-workflow-structure.png" alt="Daily Summary Workflow"/>
+            <div class="ev-thumb-overlay"><span class="ev-thumb-label">Workflow Structure</span></div>
+            <div class="ev-thumb-zoom">⤢</div>
+          </div>
+          <div class="ev-thumb" onclick="openLightbox('assets/screenshots/lead-capture/daily-auto-summary-execution-success.png','Daily Summary — Successful Execution Log')">
+            <img src="assets/screenshots/lead-capture/daily-auto-summary-execution-success.png" alt="Execution Success"/>
+            <div class="ev-thumb-overlay"><span class="ev-thumb-label">Successful Execution Log</span></div>
+            <div class="ev-thumb-zoom">⤢</div>
+          </div>
+          <div class="ev-thumb" onclick="openLightbox('assets/screenshots/lead-capture/auto-email-report-summary.png','Automated Email Report Output')">
+            <img src="assets/screenshots/lead-capture/auto-email-report-summary.png" alt="Email Report"/>
+            <div class="ev-thumb-overlay"><span class="ev-thumb-label">Automated Email Report</span></div>
+            <div class="ev-thumb-zoom">⤢</div>
+          </div>
+          <div class="ev-thumb" onclick="openLightbox('assets/screenshots/lead-capture/auto-summary-email-sent-to-cx.png','Summary Email Delivered to Client')">
+            <img src="assets/screenshots/lead-capture/auto-summary-email-sent-to-cx.png" alt="Email Sent"/>
+            <div class="ev-thumb-overlay"><span class="ev-thumb-label">Email Delivered to Client</span></div>
+            <div class="ev-thumb-zoom">⤢</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 3: AI Email Triage -->
+      <div class="ev-panel ev-panel-3">
+        <div class="ev-grid">
+          <div class="ev-thumb" onclick="openLightbox('assets/screenshots/ai-email/ai-email-triage-workflow-structure.png','AI Email Triage — Full Workflow Structure')">
+            <img src="assets/screenshots/ai-email/ai-email-triage-workflow-structure.png" alt="AI Email Triage Workflow"/>
+            <div class="ev-thumb-overlay"><span class="ev-thumb-label">Full Workflow Structure</span></div>
+            <div class="ev-thumb-zoom">⤢</div>
+          </div>
+          <div class="ev-thumb" onclick="openLightbox('assets/screenshots/ai-email/ai-email-execution-success.png','AI Email Triage — Successful Execution View')">
+            <img src="assets/screenshots/ai-email/ai-email-execution-success.png" alt="AI Email Triage Success"/>
+            <div class="ev-thumb-overlay"><span class="ev-thumb-label">Successful Execution View</span></div>
+            <div class="ev-thumb-zoom">⤢</div>
+          </div>
+          <div class="ev-thumb" onclick="openLightbox('assets/screenshots/ai-email/ai-email-triage-log.png','AI Email Triage — Logged Triage Results')">
+            <img src="assets/screenshots/ai-email/ai-email-triage-log.png" alt="AI Email Triage Log"/>
+            <div class="ev-thumb-overlay"><span class="ev-thumb-label">Logged Triage Results</span></div>
+            <div class="ev-thumb-zoom">⤢</div>
+          </div>
+          <div class="ev-thumb" onclick="openLightbox('assets/screenshots/ai-email/ai-email-telegram-alerts.png','AI Email Triage — Telegram Alert Output')">
+            <img src="assets/screenshots/ai-email/ai-email-telegram-alerts.png" alt="AI Email Telegram Alert"/>
+            <div class="ev-thumb-overlay"><span class="ev-thumb-label">Telegram Alert Output</span></div>
+            <div class="ev-thumb-zoom">⤢</div>
+          </div>
+          <div class="ev-thumb" onclick="openLightbox('assets/screenshots/ai-email/ai-email-notion-tasks.png','AI Email Triage — Notion Task Capture')">
+            <img src="assets/screenshots/ai-email/ai-email-notion-tasks.png" alt="AI Email Notion Tasks"/>
+            <div class="ev-thumb-overlay"><span class="ev-thumb-label">Notion Task Capture</span></div>
+            <div class="ev-thumb-zoom">⤢</div>
+          </div>
+        </div>
+        <div style="margin-top:28px;padding:24px;background:var(--surface2);border:1px solid var(--border2);border-radius:10px;border-left:3px solid var(--ai);">
+          <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--ai);letter-spacing:2px;margin-bottom:10px;">// WORKFLOW NOTE</div>
+          <p style="font-size:14px;color:var(--muted2);line-height:1.7;">
+            This workflow is fully built and tested locally. The screenshots above show the workflow structure,
+            triage logging, Telegram alert routing, and Notion task capture used in the system.
+            The architecture handles High / Medium / Low / Spam priority routing with AI-generated Gmail draft replies.
+          </p>
+        </div>
+      </div>
+
+      <!-- Panel 4: Knowledge Base -->
+      <div class="ev-panel ev-panel-4">
+        <div class="ev-grid">
+          <div class="ev-thumb" onclick="openLightbox('assets/screenshots/knowledge-base/employee-handbook-knowledge-base-faq-chatbot-workflow.png','Knowledge Base FAQ Chatbot — Workflow Structure')">
+            <img src="assets/screenshots/knowledge-base/employee-handbook-knowledge-base-faq-chatbot-workflow.png" alt="FAQ Chatbot Workflow"/>
+            <div class="ev-thumb-overlay"><span class="ev-thumb-label">FAQ Chatbot Workflow</span></div>
+            <div class="ev-thumb-zoom">⤢</div>
+          </div>
+          <div class="ev-thumb" onclick="openLightbox('assets/screenshots/knowledge-base/employee-handbook-knowledge-base-faq-chatbot-complex-question-example.png','FAQ Chatbot — Complex Question Demo')">
+            <img src="assets/screenshots/knowledge-base/employee-handbook-knowledge-base-faq-chatbot-complex-question-example.png" alt="FAQ Chatbot Demo"/>
+            <div class="ev-thumb-overlay"><span class="ev-thumb-label">Complex Question — Live Demo</span></div>
+            <div class="ev-thumb-zoom">⤢</div>
+          </div>
+          <div class="ev-thumb" onclick="openLightbox('assets/screenshots/knowledge-base/knowledge-base-document-ingestion.png','Knowledge Base — Document Ingestion Pipeline')">
+            <img src="assets/screenshots/knowledge-base/knowledge-base-document-ingestion.png" alt="Document Ingestion"/>
+            <div class="ev-thumb-overlay"><span class="ev-thumb-label">Document Ingestion Pipeline</span></div>
+            <div class="ev-thumb-zoom">⤢</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /ev-panels -->
+
+    <!-- VIDEO PLACEHOLDER -->
+    <div class="video-section">
+      <div class="video-label">Workflow Demo Video</div>
+      <div style="display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start;">
+        <div class="video-container">
+          <!-- ✏️ TO ADD VIDEO: Replace this div with <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe> -->
+          <div class="video-placeholder">
+            <div class="video-play-btn">▶</div>
+            <div class="video-placeholder-text">
+              <strong>Workflow Walkthrough Video</strong><br/>
+              Screen recording of a live workflow execution — coming soon.
+            </div>
+          </div>
+        </div>
+        <div style="flex:1;min-width:260px;display:flex;flex-direction:column;gap:14px;padding-top:8px;">
+          <div style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;">What You'll See</div>
+          <div style="padding:14px 18px;background:var(--surface2);border:1px solid var(--border2);border-radius:8px;border-left:2px solid var(--accent);">
+            <div style="font-family:'Space Mono',monospace;font-size:11px;color:var(--text);margin-bottom:4px;">Lead Capture Live Run</div>
+            <div style="font-size:12px;color:var(--muted2);">End-to-end from webhook trigger to Notion task creation</div>
+          </div>
+          <div style="padding:14px 18px;background:var(--surface2);border:1px solid var(--border2);border-radius:8px;border-left:2px solid var(--ai);">
+            <div style="font-family:'Space Mono',monospace;font-size:11px;color:var(--text);margin-bottom:4px;">AI Email Triage Demo</div>
+            <div style="font-size:12px;color:var(--muted2);">GPT-4 classifying and drafting replies in real time</div>
+          </div>
+          <div style="padding:14px 18px;background:var(--surface2);border:1px solid var(--border2);border-radius:8px;border-left:2px solid var(--accent2);">
+            <div style="font-family:'Space Mono',monospace;font-size:11px;color:var(--text);margin-bottom:4px;">Knowledge Base Q&amp;A</div>
+            <div style="font-size:12px;color:var(--muted2);">Complex FAQ answered from company document</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SKILLS -->
+<div class="skills-outer" id="skills">
+  <div class="skills-outer-inner">
+    <div class="section-label">Capabilities</div>
+    <div class="section-title" style="margin-bottom:48px;">Skills Proven<br/>In <span>Production</span></div>
+    <div class="skills-grid">
+      <div class="skill-card fade-in">
+        <span class="skill-icon">🔗</span>
+        <div class="skill-name">Webhook Integration</div>
+        <div class="skill-desc">Real-time data intake via HTTP webhooks with payload normalization and validation logic.</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:90%"></div></div>
+      </div>
+      <div class="skill-card fade-in">
+        <span class="skill-icon">🔀</span>
+        <div class="skill-name">Conditional Routing &amp; Logic</div>
+        <div class="skill-desc">Multi-branch Switch and Rules nodes classifying and routing data intelligently across tiers.</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:85%"></div></div>
+      </div>
+      <div class="skill-card fade-in">
+        <span class="skill-icon">📊</span>
+        <div class="skill-name">Google Sheets Automation</div>
+        <div class="skill-desc">Read, append, update, and cross-reference Sheets data automatically across workflows.</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:90%"></div></div>
+      </div>
+      <div class="skill-card fade-in">
+        <span class="skill-icon">📧</span>
+        <div class="skill-name">Gmail Automation</div>
+        <div class="skill-desc">Owner alerts, personalized auto-replies, AI-drafted responses, and mark-as-read automation.</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:88%"></div></div>
+      </div>
+      <div class="skill-card fade-in">
+        <span class="skill-icon">✈️</span>
+        <div class="skill-name">Telegram Notifications</div>
+        <div class="skill-desc">Instant push alerts to Telegram channels for critical workflow events and AI failure escalation.</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:82%"></div></div>
+      </div>
+      <div class="skill-card fade-in">
+        <span class="skill-icon">📝</span>
+        <div class="skill-name">Notion Integration</div>
+        <div class="skill-desc">Automated database page creation for lead tasks, email triage items, and structured logging.</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div>
+      </div>
+      <div class="skill-card ai-skill fade-in">
+        <span class="skill-icon">🤖</span>
+        <div class="skill-name">OpenAI / GPT-4 Integration</div>
+        <div class="skill-desc">Email classification, grounded response generation, and AI agent orchestration via n8n's AI nodes.</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:80%"></div></div>
+      </div>
+      <div class="skill-card ai-skill fade-in">
+        <span class="skill-icon">🔍</span>
+        <div class="skill-name">RAG &amp; Vector Search (PGVector)</div>
+        <div class="skill-desc">Building full RAG pipelines — document ingestion, embedding generation, semantic retrieval.</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:75%"></div></div>
+      </div>
+      <div class="skill-card ai-skill fade-in">
+        <span class="skill-icon">🐘</span>
+        <div class="skill-name">Postgres Database</div>
+        <div class="skill-desc">Storing embeddings, knowledge base metadata, query logs, and ingestion stats in Postgres.</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:74%"></div></div>
+      </div>
+      <div class="skill-card fade-in">
+        <span class="skill-icon">📁</span>
+        <div class="skill-name">Google Drive Automation</div>
+        <div class="skill-desc">Searching, downloading, and processing files from Drive as an ingestion trigger source.</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:76%"></div></div>
+      </div>
+      <div class="skill-card fade-in">
+        <span class="skill-icon">⏰</span>
+        <div class="skill-name">Scheduled Triggers</div>
+        <div class="skill-desc">Cron-based execution that fires reliably on time — daily reports, recurring checks, timed sequences.</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:88%"></div></div>
+      </div>
+      <div class="skill-card fade-in">
+        <span class="skill-icon">🧮</span>
+        <div class="skill-name">Data Aggregation &amp; Calculation</div>
+        <div class="skill-desc">Code nodes and expressions to count, merge, summarize, and transform data across branches.</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:82%"></div></div>
+      </div>
+      <div class="skill-card fade-in">
+        <span class="skill-icon">🚀</span>
+        <div class="skill-name">n8n Cloud Deployment</div>
+        <div class="skill-desc">Publishing, monitoring, and maintaining live production workflows with full execution log review.</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:85%"></div></div>
+      </div>
+      <div class="skill-card fade-in">
+        <span class="skill-icon">🗺️</span>
+        <div class="skill-name">Business Process Design</div>
+        <div class="skill-desc">VA experience applied to map, analyze, and automate real business workflows end-to-end.</div>
+        <div class="skill-bar"><div class="skill-bar-fill" style="width:92%"></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">Background</div>
+  <div class="section-title" style="margin-bottom:48px;">The Story Behind<br/>The <span>Automation</span></div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        Before specializing in automation, I worked in process-heavy support roles including
+        <strong>data entry, data validation, customer service, freelance admin support, and medical billing</strong>.
+        Those roles trained me to work with accuracy, follow-through, and repetitive business tasks that need to be done right.
+      </p>
+      <p>
+        Working inside those workflows gave me a clear view of where businesses lose time —
+        manual updates, repetitive emails, scattered information, delayed follow-ups, and operational tasks
+        that depend too much on human effort. I did that work myself, so I understand the day-to-day pressure behind it.
+      </p>
+      <p>
+        That experience led me into <strong>automation with n8n</strong>.
+        Today I build practical workflow systems that help businesses reduce manual work,
+        improve response time, and keep operations organized — from lead handling and notifications
+        to AI-assisted workflows and knowledge-based systems.
+      </p>
+      <p>
+        My advantage is simple:
+        <strong>I do not build automation from theory alone — I build it from real operations experience.</strong>
+      </p>
+    </div>
+
+    <div class="about-terminal">
+      <div class="terminal-topbar">
+        <div class="dot dot-r"></div>
+        <div class="dot dot-y"></div>
+        <div class="dot dot-g"></div>
+        <div class="terminal-title">profile.json</div>
+      </div>
+      <div class="terminal-body">
+        <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">cat profile.json</span></div>
+        <hr class="t-separator"/>
+        <div class="t-line t-out"><span class="t-key">"name"</span>: <span class="t-val">"Robert Tapangan"</span></div>
+        <div class="t-line t-out"><span class="t-key">"role"</span>: <span class="t-val">"Automation Specialist"</span></div>
+        <div class="t-line t-out"><span class="t-key">"specialization"</span>: <span class="t-val">"n8n Workflows &amp; AI Automation"</span></div>
+        <div class="t-line t-out"><span class="t-key">"background"</span>: <span class="t-val">"Operations Support / Former VA"</span></div>
+        <div class="t-line t-out"><span class="t-key">"based"</span>: <span class="t-val">"Philippines 🇵🇭"</span></div>
+        <hr class="t-separator"/>
+        <div class="t-line t-out"><span class="t-key">"previous_work"</span>: <span class="t-val">["Data Entry", "Data Validation", "CSR", "Medical Billing"]</span></div>
+        <div class="t-line t-out"><span class="t-key">"live_workflows"</span>: <span class="t-val">2</span></div>
+        <div class="t-line t-out"><span class="t-key">"ai_workflows"</span>: <span class="t-val">3</span></div>
+        <div class="t-line t-out"><span class="t-key">"stack"</span>: <span class="t-val">["n8n", "OpenAI", "Postgres", "PGVector"]</span></div>
+        <hr class="t-separator"/>
+        <div class="t-line t-out"><span class="t-key">"open_to"</span>: <span class="t-val">"Freelance / Remote / Contract Work"</span></div>
+        <div class="t-line t-out"><span class="t-key">"availability"</span>: <span class="t-val" style="color:var(--accent2);">"Immediate"</span></div>
+        <div class="t-line t-out"><span class="t-key">"email"</span>: <span class="t-val">"roberttapangan.va@gmail.com"</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div class="contact-section" id="contact">
+  <div class="section-label" style="justify-content:center;">Get In Touch</div>
+  <div class="contact-title">Let's Automate<br/>Your Business.</div>
+  <div class="contact-subtitle">
+    Have a repetitive process eating your team's time?
+    Let's turn it into a workflow that runs itself.
+  </div>
+  <div class="contact-links">
+    <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=roberttapangan.va@gmail.com" class="contact-link" target="_blank" rel="noopener noreferrer">📧 roberttapangan.va@gmail.com</a>
+    <a href="https://www.upwork.com/freelancers/~017429a849b97624af?mp_source=share" class="contact-link" target="_blank" rel="noopener noreferrer">💼 Upwork Profile</a>
+    <a href="https://www.linkedin.com/in/robert-tapangan" class="contact-link" target="_blank" rel="noopener noreferrer">🔗 LinkedIn</a>
+    <a href="https://www.onlinejobs.ph/jobseekers/info/4877103" class="contact-link" target="_blank" rel="noopener noreferrer">🌐 OnlineJobs Profile</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>Built by <span>Robert Tapangan</span> · Automation Specialist · <span>Open to remote work worldwide</span></p>
+</footer>
+
+<script>
+// ── Custom Cursor ──
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
+function animCursor() {
+  cursor.style.transform = `translate(${mx-5}px,${my-5}px)`;
+  rx += (mx-rx)*0.11; ry += (my-ry)*0.11;
+  ring.style.transform = `translate(${rx-16}px,${ry-16}px)`;
+  requestAnimationFrame(animCursor);
+}
+animCursor();
+
+// ── Stat Counters ──
+const statNums = document.querySelectorAll('.stat-num');
+const statsObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const target = parseInt(e.target.dataset.target);
+      const suffix = e.target.dataset.suffix || '';
+      let start = null;
+      const step = ts => {
+        if (!start) start = ts;
+        const p = Math.min((ts-start)/1400, 1);
+        const eased = 1-Math.pow(1-p,3);
+        e.target.textContent = Math.floor(eased*target)+suffix;
+        if (p<1) requestAnimationFrame(step);
+        else e.target.textContent = target+suffix;
+      };
+      requestAnimationFrame(step);
+      statsObs.unobserve(e.target);
+    }
+  });
+}, {threshold:0.5});
+statNums.forEach(n => statsObs.observe(n));
+
+// ── Fade In ──
+const fadeObs = new IntersectionObserver(entries => {
+  entries.forEach((e,i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i*90);
+      fadeObs.unobserve(e.target);
+    }
+  });
+}, {threshold:0.08});
+document.querySelectorAll('.fade-in').forEach(el => fadeObs.observe(el));
+
+// ── Skill Bars ──
+const barObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.transition = 'transform 1.1s cubic-bezier(0.4,0,0.2,1)';
+      e.target.style.transform = 'scaleX(1)';
+      barObs.unobserve(e.target);
+    }
+  });
+}, {threshold:0.3});
+document.querySelectorAll('.skill-bar-fill').forEach(b => barObs.observe(b));
+
+// ── Lightbox ──
+function openLightbox(src, caption) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox-caption').textContent = caption;
+  document.getElementById('lightbox').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+  document.body.style.overflow = '';
+}
+document.getElementById('lightbox').addEventListener('click', function(e) {
+  if (e.target === this) closeLightbox();
+});
+document.addEventListener('keydown', e => { if (e.key==='Escape') closeLightbox(); });
+</script>
+</body>
+</html>
